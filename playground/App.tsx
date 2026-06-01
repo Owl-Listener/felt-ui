@@ -1,5 +1,10 @@
 import * as React from "react";
-import { ToolCall, type ToolCallStatus } from "@felt-ui/react";
+import {
+  Plan,
+  ToolCall,
+  type PlanStep,
+  type ToolCallStatus,
+} from "@felt-ui/react";
 
 /**
  * Live demo mirroring the reference example: an irreversible refund.
@@ -69,6 +74,42 @@ function ReversibleDemo() {
   );
 }
 
+const PLAN_TITLES = [
+  "Look up order #48213",
+  "Verify refund eligibility",
+  "Issue refund to original card",
+  "Email the customer a receipt",
+];
+
+/** Live plan that advances a step every ~1.2s, then settles. */
+function PlanDemo() {
+  const [active, setActive] = React.useState(0);
+
+  React.useEffect(() => {
+    if (active >= PLAN_TITLES.length) return;
+    const t = window.setTimeout(() => setActive((a) => a + 1), 1200);
+    return () => window.clearTimeout(t);
+  }, [active]);
+
+  const steps: PlanStep[] = PLAN_TITLES.map((title, i) => ({
+    id: String(i),
+    title,
+    status: i < active ? "done" : i === active ? "active" : "pending",
+  }));
+
+  return (
+    <div className="flex flex-col gap-3">
+      <Plan title="Processing refund" steps={steps} />
+      <button
+        onClick={() => setActive(0)}
+        className="self-start text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground"
+      >
+        Replay
+      </button>
+    </div>
+  );
+}
+
 export default function App() {
   const [dark, setDark] = React.useState(false);
 
@@ -105,6 +146,13 @@ export default function App() {
           Reversible action
         </h2>
         <ReversibleDemo />
+      </section>
+
+      <section className="flex flex-col gap-2">
+        <h2 className="text-sm font-medium text-muted-foreground">
+          Plan visibility (live per-step status)
+        </h2>
+        <PlanDemo />
       </section>
     </main>
   );

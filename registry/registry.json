@@ -8,6 +8,12 @@
       "type": "registry:component",
       "title": "Tool Call",
       "description": "A calm action card for agent tool use: intent + parameters before acting, approve/deny, an irreversible 'can't be undone' guard, and an honest status lifecycle. Accessible by default."
+    },
+    {
+      "name": "plan",
+      "type": "registry:component",
+      "title": "Plan / Steps",
+      "description": "Agent plan visibility with live per-step status. Accessible ordered list — status as text + colour, aria-current on the active step, progress summary, and ARIA live announcements."
     }
   ]
 }

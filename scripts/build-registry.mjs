@@ -48,6 +48,23 @@ const items = [
       },
     ],
   },
+  {
+    name: "plan",
+    type: "registry:component",
+    title: "Plan / Steps",
+    description:
+      "Agent plan visibility with live per-step status. Accessible ordered list — status as text + colour, aria-current on the active step, progress summary, and ARIA live announcements.",
+    dependencies: ["clsx", "tailwind-merge", "lucide-react"],
+    registryDependencies: [],
+    files: [
+      { src: "src/lib/utils.ts", target: "lib/utils.ts", type: "registry:lib" },
+      {
+        src: "src/components/plan/plan.tsx",
+        target: "components/felt/plan.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ];
 
 await mkdir(outDir, { recursive: true });
