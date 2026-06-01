@@ -1,0 +1,8 @@
+node_modules/
+dist/
+playground/dist/
+*.tsbuildinfo
+.DS_Store
+*.log
+coverage/
+.eslintcache
