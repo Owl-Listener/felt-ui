@@ -1,0 +1,10 @@
+/* Felt design tokens (success/warning + shadcn vars) */
+@import "../src/styles/globals.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-background text-foreground antialiased;
+}

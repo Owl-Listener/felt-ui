@@ -1,0 +1,14 @@
+src/
+playground/
+*.test.ts
+*.test.tsx
+.github/
+tsconfig.json
+tsup.config.ts
+vitest.config.ts
+eslint.config.mjs
+postcss.config.cjs
+tailwind.config.ts
+.prettierrc
+.eslintcache
+coverage/
