@@ -26,6 +26,12 @@
       "type": "registry:component",
       "title": "Citation",
       "description": "Inline source attribution you can verify. A compact marker that links to the source with an attribution accessible name, plus a hover/focus preview (title, source, quoted snippet) and a numbered <CitationList> sources section."
+    },
+    {
+      "name": "refusal",
+      "type": "registry:component",
+      "title": "Refusal",
+      "description": "Decline gracefully — a limit, not a dead end. States the decline plainly, explains why, and offers ways forward. Visually calm (not an error), with an accessible labelled region and a polite live announcement."
     }
   ]
 }
