@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import * as HoverCard from "@radix-ui/react-hover-card";
 import { ExternalLink, Quote } from "lucide-react";
@@ -118,7 +120,7 @@ export const Citation = React.forwardRef<HTMLAnchorElement, CitationProps>(
             align="start"
             sideOffset={6}
             collisionPadding={8}
-            className="z-50 w-72 rounded-md border border-border bg-card p-3 text-card-foreground shadow-md outline-none"
+            className="z-50 w-72 rounded-md border border-border bg-card p-3 text-card-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[side=top]:slide-in-from-bottom-1 motion-reduce:animate-none"
           >
             <CitationCard
               source={{ title, url, source: label, snippet }}

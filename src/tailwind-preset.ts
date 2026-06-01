@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 /**
  * Felt UI Tailwind preset.
@@ -76,6 +77,7 @@ const preset = {
       },
     },
   },
+  plugins: [tailwindcssAnimate],
 } satisfies Partial<Config>;
 
 export default preset;
