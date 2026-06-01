@@ -1,6 +1,6 @@
 {
   "name": "@felt-ui/react",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Accessible-by-default React components for AI products — the trust primitives that make agents feel trustworthy. shadcn-compatible, MIT.",
   "license": "MIT",
   "type": "module",
@@ -33,10 +33,15 @@
       }
     }
   },
+  "bin": {
+    "felt": "./cli/felt.mjs"
+  },
   "files": [
     "dist",
+    "cli",
     "registry",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE"
   ],
   "scripts": {
@@ -48,7 +53,12 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "playground": "npm --prefix playground run dev"
+    "playground": "npm --prefix playground run dev",
+    "docs": "npm --prefix docs run dev",
+    "prepublishOnly": "npm run registry && npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "react",
@@ -81,7 +91,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.469.0",
-    "tailwind-merge": "^2.6.0"
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

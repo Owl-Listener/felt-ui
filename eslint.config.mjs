@@ -4,7 +4,7 @@ import reactHooks from "eslint-plugin-react-hooks";
 
 export default tseslint.config(
   {
-    ignores: ["dist/**", "node_modules/**", "playground/dist/**"],
+    ignores: ["**/dist/**", "node_modules/**", "docs/public/**"],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -31,6 +31,10 @@ export default tseslint.config(
         process: "readonly",
         console: "readonly",
         __dirname: "readonly",
+        fetch: "readonly",
+        URL: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
       },
     },
   },

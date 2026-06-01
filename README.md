@@ -8,6 +8,8 @@ real streaming.
 
 *shadcn-compatible · inclusive by default · MIT*
 
+**[Live demo & docs →](https://owl-listener.github.io/felt-ui/)**
+
 </div>
 
 ---
@@ -38,23 +40,22 @@ themeable.
 
 ## Install
 
+Pick your style — copy the source in (you own the code), or use it as a dependency:
+
 ```bash
-# coming soon
+# the felt CLI — copies the component source into your project
+npm install @felt-ui/react
 npx felt add tool-call
-```
 
-The `felt` CLI is landing. Until it does, pull the source straight in through the shadcn
-registry — or just install the package:
+# …or straight through shadcn, no install needed
+npx shadcn@latest add https://owl-listener.github.io/felt-ui/r/tool-call.json
 
-```bash
-# copy the component into your project (you own the code)
-npx shadcn@latest add https://felt-ui.dev/r/tool-call.json
-
-# …or use it as a dependency
+# …or just import from the package
 npm install @felt-ui/react
 ```
 
-Peer deps: `react` and `react-dom` (18 or 19).
+`felt list` shows what's available; `felt add plan confidence` adds several at once. Peer deps:
+`react` and `react-dom` (18 or 19).
 
 ### Wire up the theme
 
@@ -151,9 +152,13 @@ npm run typecheck      # tsc --noEmit
 npm run lint           # eslint
 npm run registry       # regenerate registry/ from src
 
-# Live demo
+# Live demo (quick sandbox)
 npm --prefix playground install
-npm run playground     # vite dev server with the ToolCall demos
+npm run playground     # vite dev server with every primitive
+
+# Docs / demo site (deployed to GitHub Pages; also serves the registry at /r)
+npm --prefix docs install
+npm --prefix docs run dev
 ```
 
 ```
@@ -165,8 +170,10 @@ src/
   styles/globals.css          # design tokens
   tailwind-preset.ts          # exported Tailwind preset
   index.ts                    # public API
+  ../cli/felt.mjs             # the `felt` CLI
 registry/                     # shadcn-compatible registry (generated)
-playground/                   # runnable Vite demo
+playground/                   # quick Vite sandbox
+docs/                         # docs/demo site (GitHub Pages) — serves /r registry
 ```
 
 ## Status

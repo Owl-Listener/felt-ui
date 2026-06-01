@@ -1,10 +1,13 @@
 {
-  "name": "felt-ui-playground",
+  "name": "felt-ui-docs",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "sync-registry": "node ../scripts/copy-registry.mjs",
+    "predev": "npm run sync-registry",
     "dev": "vite",
+    "prebuild": "npm run sync-registry",
     "build": "vite build",
     "preview": "vite preview"
   },
