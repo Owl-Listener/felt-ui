@@ -82,6 +82,23 @@ const items = [
       },
     ],
   },
+  {
+    name: "citation",
+    type: "registry:component",
+    title: "Citation",
+    description:
+      "Inline source attribution you can verify. A compact marker that links to the source with an attribution accessible name, plus a hover/focus preview (title, source, quoted snippet) and a numbered <CitationList> sources section.",
+    dependencies: ["@radix-ui/react-hover-card", "clsx", "tailwind-merge", "lucide-react"],
+    registryDependencies: [],
+    files: [
+      { src: "src/lib/utils.ts", target: "lib/utils.ts", type: "registry:lib" },
+      {
+        src: "src/components/citation/citation.tsx",
+        target: "components/felt/citation.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ];
 
 await mkdir(outDir, { recursive: true });

@@ -20,6 +20,12 @@
       "type": "registry:component",
       "title": "Confidence",
       "description": "Communicate calibrated uncertainty, honestly. An accessible meter (role=meter) whose band is conveyed by label + icon + colour — never colour alone — so low confidence reads as caution."
+    },
+    {
+      "name": "citation",
+      "type": "registry:component",
+      "title": "Citation",
+      "description": "Inline source attribution you can verify. A compact marker that links to the source with an attribution accessible name, plus a hover/focus preview (title, source, quoted snippet) and a numbered <CitationList> sources section."
     }
   ]
 }

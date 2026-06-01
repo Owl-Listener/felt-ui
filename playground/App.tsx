@@ -1,5 +1,7 @@
 import * as React from "react";
 import {
+  Citation,
+  CitationList,
   Confidence,
   Plan,
   ToolCall,
@@ -154,6 +156,47 @@ export default function App() {
           Plan visibility (live per-step status)
         </h2>
         <PlanDemo />
+      </section>
+
+      <section className="flex flex-col gap-2">
+        <h2 className="text-sm font-medium text-muted-foreground">
+          Source attribution
+        </h2>
+        <p className="max-w-xl text-sm leading-relaxed">
+          Refunds are issued back to the original payment method within five
+          business days
+          <Citation
+            index={1}
+            title="Refund policy"
+            url="https://help.example.com/refunds"
+            source="Example Help Center"
+            snippet="Approved refunds are returned to the original payment method within 5 business days."
+          />{" "}
+          and a confirmation email is sent automatically
+          <Citation
+            index={2}
+            title="Notifications &amp; receipts"
+            url="https://help.example.com/receipts"
+            snippet="Customers receive an emailed receipt for every refund."
+          />
+          .
+        </p>
+        <CitationList
+          sources={[
+            {
+              title: "Refund policy",
+              url: "https://help.example.com/refunds",
+              source: "Example Help Center",
+              snippet:
+                "Approved refunds are returned to the original payment method within 5 business days.",
+            },
+            {
+              title: "Notifications & receipts",
+              url: "https://help.example.com/receipts",
+              snippet: "Customers receive an emailed receipt for every refund.",
+            },
+          ]}
+        />
       </section>
 
       <section className="flex flex-col gap-2">
