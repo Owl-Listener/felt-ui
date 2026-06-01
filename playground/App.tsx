@@ -1,5 +1,6 @@
 import * as React from "react";
 import {
+  Confidence,
   Plan,
   ToolCall,
   type PlanStep,
@@ -153,6 +154,20 @@ export default function App() {
           Plan visibility (live per-step status)
         </h2>
         <PlanDemo />
+      </section>
+
+      <section className="flex flex-col gap-2">
+        <h2 className="text-sm font-medium text-muted-foreground">
+          Calibrated confidence
+        </h2>
+        <div className="flex flex-col gap-4">
+          <Confidence value={0.92} caption="Grounded in 3 cited sources." />
+          <Confidence value={0.64} caption="Some sources disagree." />
+          <Confidence
+            value={0.28}
+            caption="Thin evidence — verify before relying on this."
+          />
+        </div>
       </section>
     </main>
   );

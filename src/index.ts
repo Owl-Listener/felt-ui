@@ -13,6 +13,13 @@ export {
   type StepProps,
   type StepStatus,
 } from "@/components/plan/plan";
+export {
+  Confidence,
+  getConfidenceLevel,
+  type ConfidenceProps,
+  type ConfidenceLevel,
+  type ConfidenceThresholds,
+} from "@/components/confidence/confidence";
 
 // shadcn-style internals (handy to reuse / restyle)
 export { Button, buttonVariants, type ButtonProps } from "@/components/ui/button";

@@ -14,6 +14,12 @@
       "type": "registry:component",
       "title": "Plan / Steps",
       "description": "Agent plan visibility with live per-step status. Accessible ordered list — status as text + colour, aria-current on the active step, progress summary, and ARIA live announcements."
+    },
+    {
+      "name": "confidence",
+      "type": "registry:component",
+      "title": "Confidence",
+      "description": "Communicate calibrated uncertainty, honestly. An accessible meter (role=meter) whose band is conveyed by label + icon + colour — never colour alone — so low confidence reads as caution."
     }
   ]
 }

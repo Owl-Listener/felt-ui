@@ -65,6 +65,23 @@ const items = [
       },
     ],
   },
+  {
+    name: "confidence",
+    type: "registry:component",
+    title: "Confidence",
+    description:
+      "Communicate calibrated uncertainty, honestly. An accessible meter (role=meter) whose band is conveyed by label + icon + colour — never colour alone — so low confidence reads as caution.",
+    dependencies: ["clsx", "tailwind-merge", "lucide-react"],
+    registryDependencies: [],
+    files: [
+      { src: "src/lib/utils.ts", target: "lib/utils.ts", type: "registry:lib" },
+      {
+        src: "src/components/confidence/confidence.tsx",
+        target: "components/felt/confidence.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ];
 
 await mkdir(outDir, { recursive: true });
