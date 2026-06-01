@@ -53,7 +53,12 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "playground": "npm --prefix playground run dev"
+    "playground": "npm --prefix playground run dev",
+    "docs": "npm --prefix docs run dev",
+    "prepublishOnly": "npm run registry && npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "react",
