@@ -99,6 +99,28 @@ const items = [
       },
     ],
   },
+  {
+    name: "refusal",
+    type: "registry:component",
+    title: "Refusal",
+    description:
+      "Decline gracefully — a limit, not a dead end. States the decline plainly, explains why, and offers ways forward. Visually calm (not an error), with an accessible labelled region and a polite live announcement.",
+    dependencies: ["clsx", "tailwind-merge", "lucide-react"],
+    registryDependencies: [],
+    files: [
+      { src: "src/lib/utils.ts", target: "lib/utils.ts", type: "registry:lib" },
+      {
+        src: "src/components/ui/button.tsx",
+        target: "components/ui/button.tsx",
+        type: "registry:ui",
+      },
+      {
+        src: "src/components/refusal/refusal.tsx",
+        target: "components/felt/refusal.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ];
 
 await mkdir(outDir, { recursive: true });

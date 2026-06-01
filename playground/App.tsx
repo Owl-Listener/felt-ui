@@ -4,6 +4,7 @@ import {
   CitationList,
   Confidence,
   Plan,
+  Refusal,
   ToolCall,
   type PlanStep,
   type ToolCallStatus,
@@ -211,6 +212,21 @@ export default function App() {
             caption="Thin evidence — verify before relying on this."
           />
         </div>
+      </section>
+
+      <section className="flex flex-col gap-2">
+        <h2 className="text-sm font-medium text-muted-foreground">
+          Graceful refusal
+        </h2>
+        <Refusal
+          category="policy"
+          title="I can't issue a refund above $500"
+          reason="Refunds over $500 need a manager's approval before they can be processed."
+          actions={[
+            { label: "Send to a manager", onClick: () => {} },
+            { label: "Refund $500 instead", onClick: () => {} },
+          ]}
+        />
       </section>
     </main>
   );

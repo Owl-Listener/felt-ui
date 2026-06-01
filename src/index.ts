@@ -27,6 +27,12 @@ export {
   type CitationListProps,
   type CitationSource,
 } from "@/components/citation/citation";
+export {
+  Refusal,
+  type RefusalProps,
+  type RefusalAction,
+  type RefusalCategory,
+} from "@/components/refusal/refusal";
 
 // shadcn-style internals (handy to reuse / restyle)
 export { Button, buttonVariants, type ButtonProps } from "@/components/ui/button";
