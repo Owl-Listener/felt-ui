@@ -82,6 +82,72 @@ const items = [
       },
     ],
   },
+  {
+    name: "citation",
+    type: "registry:component",
+    title: "Citation",
+    description:
+      "Inline source attribution you can verify. A compact marker that links to the source with an attribution accessible name, plus a hover/focus preview (title, source, quoted snippet) and a numbered <CitationList> sources section.",
+    dependencies: ["@radix-ui/react-hover-card", "clsx", "tailwind-merge", "lucide-react"],
+    registryDependencies: [],
+    files: [
+      { src: "src/lib/utils.ts", target: "lib/utils.ts", type: "registry:lib" },
+      {
+        src: "src/components/citation/citation.tsx",
+        target: "components/felt/citation.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "refusal",
+    type: "registry:component",
+    title: "Refusal",
+    description:
+      "Decline gracefully — a limit, not a dead end. States the decline plainly, explains why, and offers ways forward. Visually calm (not an error), with an accessible labelled region and a polite live announcement.",
+    dependencies: ["clsx", "tailwind-merge", "lucide-react"],
+    registryDependencies: [],
+    files: [
+      { src: "src/lib/utils.ts", target: "lib/utils.ts", type: "registry:lib" },
+      {
+        src: "src/components/ui/button.tsx",
+        target: "components/ui/button.tsx",
+        type: "registry:ui",
+      },
+      {
+        src: "src/components/refusal/refusal.tsx",
+        target: "components/felt/refusal.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "message",
+    type: "registry:component",
+    title: "Message + Composer",
+    description:
+      "Accessible chat message with first-class streaming (ARIA live region body, reduced-motion caret, stop/regenerate/copy) plus a Composer input — Enter to send, Shift+Enter for newline, stop-while-streaming, and accessible attachments.",
+    dependencies: ["clsx", "tailwind-merge", "lucide-react"],
+    registryDependencies: [],
+    files: [
+      { src: "src/lib/utils.ts", target: "lib/utils.ts", type: "registry:lib" },
+      {
+        src: "src/components/ui/button.tsx",
+        target: "components/ui/button.tsx",
+        type: "registry:ui",
+      },
+      {
+        src: "src/components/message/message.tsx",
+        target: "components/felt/message.tsx",
+        type: "registry:component",
+      },
+      {
+        src: "src/components/message/composer.tsx",
+        target: "components/felt/composer.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ];
 
 await mkdir(outDir, { recursive: true });

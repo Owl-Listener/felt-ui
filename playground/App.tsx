@@ -1,7 +1,12 @@
 import * as React from "react";
 import {
+  Citation,
+  CitationList,
+  Composer,
   Confidence,
+  Message,
   Plan,
+  Refusal,
   ToolCall,
   type PlanStep,
   type ToolCallStatus,
@@ -111,6 +116,94 @@ function PlanDemo() {
   );
 }
 
+type ChatTurn = { id: number; role: "user" | "assistant"; text: string };
+
+const ASSISTANT_REPLY =
+  "Sure — I can refund order #48213 for $129.00 back to the original card. It usually lands within five business days.";
+
+/** A tiny chat: send a message, watch a streamed reply, stop or regenerate. */
+function ChatDemo() {
+  const [turns, setTurns] = React.useState<ChatTurn[]>([
+    { id: 0, role: "assistant", text: "Hi! How can I help with your order?" },
+  ]);
+  const [streamingId, setStreamingId] = React.useState<number | null>(null);
+  const nextId = React.useRef(1);
+  const timer = React.useRef<number | null>(null);
+
+  const stream = React.useCallback((id: number, full: string) => {
+    let i = 0;
+    setStreamingId(id);
+    const tick = () => {
+      i += 2;
+      setTurns((prev) =>
+        prev.map((t) => (t.id === id ? { ...t, text: full.slice(0, i) } : t)),
+      );
+      if (i < full.length) {
+        timer.current = window.setTimeout(tick, 40);
+      } else {
+        setStreamingId(null);
+      }
+    };
+    tick();
+  }, []);
+
+  const send = React.useCallback(
+    (value: string) => {
+      const userId = nextId.current++;
+      const botId = nextId.current++;
+      setTurns((prev) => [
+        ...prev,
+        { id: userId, role: "user", text: value },
+        { id: botId, role: "assistant", text: "" },
+      ]);
+      stream(botId, ASSISTANT_REPLY);
+    },
+    [stream],
+  );
+
+  const stop = React.useCallback(() => {
+    if (timer.current) window.clearTimeout(timer.current);
+    setStreamingId(null);
+  }, []);
+
+  const regenerate = React.useCallback(
+    (id: number) => {
+      setTurns((prev) => prev.map((t) => (t.id === id ? { ...t, text: "" } : t)));
+      stream(id, ASSISTANT_REPLY);
+    },
+    [stream],
+  );
+
+  return (
+    <div className="flex flex-col gap-4 rounded-lg border border-border bg-card p-4">
+      <div className="flex flex-col gap-4">
+        {turns.map((t) => (
+          <Message
+            key={t.id}
+            role={t.role}
+            streaming={streamingId === t.id}
+            onStop={streamingId === t.id ? stop : undefined}
+            onRegenerate={
+              t.role === "assistant" && streamingId === null && t.text
+                ? () => regenerate(t.id)
+                : undefined
+            }
+          >
+            {t.text}
+          </Message>
+        ))}
+      </div>
+      <Composer
+        streaming={streamingId !== null}
+        onStop={stop}
+        onSubmit={send}
+        onAttach={() => {}}
+        placeholder="Ask about your order…"
+      />
+    </div>
+  );
+}
+
 export default function App() {
   const [dark, setDark] = React.useState(false);
 
@@ -158,6 +251,47 @@ export default function App() {
 
       <section className="flex flex-col gap-2">
         <h2 className="text-sm font-medium text-muted-foreground">
+          Source attribution
+        </h2>
+        <p className="max-w-xl text-sm leading-relaxed">
+          Refunds are issued back to the original payment method within five
+          business days
+          <Citation
+            index={1}
+            title="Refund policy"
+            url="https://help.example.com/refunds"
+            source="Example Help Center"
+            snippet="Approved refunds are returned to the original payment method within 5 business days."
+          />{" "}
+          and a confirmation email is sent automatically
+          <Citation
+            index={2}
+            title="Notifications &amp; receipts"
+            url="https://help.example.com/receipts"
+            snippet="Customers receive an emailed receipt for every refund."
+          />
+          .
+        </p>
+        <CitationList
+          sources={[
+            {
+              title: "Refund policy",
+              url: "https://help.example.com/refunds",
+              source: "Example Help Center",
+              snippet:
+                "Approved refunds are returned to the original payment method within 5 business days.",
+            },
+            {
+              title: "Notifications & receipts",
+              url: "https://help.example.com/receipts",
+              snippet: "Customers receive an emailed receipt for every refund.",
+            },
+          ]}
+        />
+      </section>
+
+      <section className="flex flex-col gap-2">
+        <h2 className="text-sm font-medium text-muted-foreground">
           Calibrated confidence
         </h2>
         <div className="flex flex-col gap-4">
@@ -168,6 +302,28 @@ export default function App() {
             caption="Thin evidence — verify before relying on this."
           />
         </div>
+      </section>
+
+      <section className="flex flex-col gap-2">
+        <h2 className="text-sm font-medium text-muted-foreground">
+          Graceful refusal
+        </h2>
+        <Refusal
+          category="policy"
+          title="I can't issue a refund above $500"
+          reason="Refunds over $500 need a manager's approval before they can be processed."
+          actions={[
+            { label: "Send to a manager", onClick: () => {} },
+            { label: "Refund $500 instead", onClick: () => {} },
+          ]}
+        />
+      </section>
+
+      <section className="flex flex-col gap-2">
+        <h2 className="text-sm font-medium text-muted-foreground">
+          Streaming chat (Message + Composer)
+        </h2>
+        <ChatDemo />
       </section>
     </main>
   );

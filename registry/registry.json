@@ -20,6 +20,24 @@
       "type": "registry:component",
       "title": "Confidence",
       "description": "Communicate calibrated uncertainty, honestly. An accessible meter (role=meter) whose band is conveyed by label + icon + colour — never colour alone — so low confidence reads as caution."
+    },
+    {
+      "name": "citation",
+      "type": "registry:component",
+      "title": "Citation",
+      "description": "Inline source attribution you can verify. A compact marker that links to the source with an attribution accessible name, plus a hover/focus preview (title, source, quoted snippet) and a numbered <CitationList> sources section."
+    },
+    {
+      "name": "refusal",
+      "type": "registry:component",
+      "title": "Refusal",
+      "description": "Decline gracefully — a limit, not a dead end. States the decline plainly, explains why, and offers ways forward. Visually calm (not an error), with an accessible labelled region and a polite live announcement."
+    },
+    {
+      "name": "message",
+      "type": "registry:component",
+      "title": "Message + Composer",
+      "description": "Accessible chat message with first-class streaming (ARIA live region body, reduced-motion caret, stop/regenerate/copy) plus a Composer input — Enter to send, Shift+Enter for newline, stop-while-streaming, and accessible attachments."
     }
   ]
 }

@@ -20,6 +20,29 @@ export {
   type ConfidenceLevel,
   type ConfidenceThresholds,
 } from "@/components/confidence/confidence";
+export {
+  Citation,
+  CitationList,
+  type CitationProps,
+  type CitationListProps,
+  type CitationSource,
+} from "@/components/citation/citation";
+export {
+  Refusal,
+  type RefusalProps,
+  type RefusalAction,
+  type RefusalCategory,
+} from "@/components/refusal/refusal";
+export {
+  Message,
+  type MessageProps,
+  type MessageRole,
+  type MessageAttachment,
+} from "@/components/message/message";
+export {
+  Composer,
+  type ComposerProps,
+} from "@/components/message/composer";
 
 // shadcn-style internals (handy to reuse / restyle)
 export { Button, buttonVariants, type ButtonProps } from "@/components/ui/button";

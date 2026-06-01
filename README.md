@@ -26,12 +26,12 @@ Tailwind**, so you adopt it without leaving the ecosystem you already use.
 
 | Component | What it does | Status |
 |---|---|---|
-| `<Plan>` / `<Steps>` | Show the agent's plan and live status per step. | 🔜 Planned |
+| `<Plan>` / `<Steps>` | Show the agent's plan and live status per step. | ✅ Available |
 | `<ToolCall>` | Render an action the agent wants to take, with approve / deny and a "can't be undone" guard. | ✅ Available |
-| `<Confidence>` | Communicate calibrated uncertainty — how sure the model is. | 🔜 Planned |
-| `<Citation>` | Attribute sources so answers are groundable. | 🔜 Planned |
-| `<Refusal>` | Decline gracefully — a limit, not a dead end. | 🔜 Planned |
-| `<Message>` + `<Composer>` | First-class streaming, stop/regenerate, attachments — accessible to screen readers via live regions. | 🔜 Planned |
+| `<Confidence>` | Communicate calibrated uncertainty — how sure the model is. | ✅ Available |
+| `<Citation>` | Attribute sources so answers are groundable. | ✅ Available |
+| `<Refusal>` | Decline gracefully — a limit, not a dead end. | ✅ Available |
+| `<Message>` + `<Composer>` | First-class streaming, stop/regenerate, attachments — accessible to screen readers via live regions. | ✅ Available |
 
 Every primitive is keyboard-operable, screen-reader-friendly, reduced-motion aware, and
 themeable.
@@ -171,7 +171,8 @@ playground/                   # runnable Vite demo
 
 ## Status
 
-🚧 Early. Building the first primitives in public. Star to follow along.
+🌱 All six trust primitives have landed and are accessible-by-default. Pre-1.0
+— APIs may still shift as we dogfood. Star to follow along.
 
 ## License
 
