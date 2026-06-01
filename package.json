@@ -1,6 +1,6 @@
 {
   "name": "@felt-ui/react",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Accessible-by-default React components for AI products — the trust primitives that make agents feel trustworthy. shadcn-compatible, MIT.",
   "license": "MIT",
   "type": "module",
@@ -33,10 +33,15 @@
       }
     }
   },
+  "bin": {
+    "felt": "./cli/felt.mjs"
+  },
   "files": [
     "dist",
+    "cli",
     "registry",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE"
   ],
   "scripts": {
