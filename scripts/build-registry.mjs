@@ -121,6 +121,33 @@ const items = [
       },
     ],
   },
+  {
+    name: "message",
+    type: "registry:component",
+    title: "Message + Composer",
+    description:
+      "Accessible chat message with first-class streaming (ARIA live region body, reduced-motion caret, stop/regenerate/copy) plus a Composer input — Enter to send, Shift+Enter for newline, stop-while-streaming, and accessible attachments.",
+    dependencies: ["clsx", "tailwind-merge", "lucide-react"],
+    registryDependencies: [],
+    files: [
+      { src: "src/lib/utils.ts", target: "lib/utils.ts", type: "registry:lib" },
+      {
+        src: "src/components/ui/button.tsx",
+        target: "components/ui/button.tsx",
+        type: "registry:ui",
+      },
+      {
+        src: "src/components/message/message.tsx",
+        target: "components/felt/message.tsx",
+        type: "registry:component",
+      },
+      {
+        src: "src/components/message/composer.tsx",
+        target: "components/felt/composer.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ];
 
 await mkdir(outDir, { recursive: true });

@@ -32,6 +32,12 @@
       "type": "registry:component",
       "title": "Refusal",
       "description": "Decline gracefully — a limit, not a dead end. States the decline plainly, explains why, and offers ways forward. Visually calm (not an error), with an accessible labelled region and a polite live announcement."
+    },
+    {
+      "name": "message",
+      "type": "registry:component",
+      "title": "Message + Composer",
+      "description": "Accessible chat message with first-class streaming (ARIA live region body, reduced-motion caret, stop/regenerate/copy) plus a Composer input — Enter to send, Shift+Enter for newline, stop-while-streaming, and accessible attachments."
     }
   ]
 }

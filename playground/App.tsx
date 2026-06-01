@@ -2,7 +2,9 @@ import * as React from "react";
 import {
   Citation,
   CitationList,
+  Composer,
   Confidence,
+  Message,
   Plan,
   Refusal,
   ToolCall,
@@ -110,6 +112,94 @@ function PlanDemo() {
       >
         Replay
       </button>
+    </div>
+  );
+}
+
+type ChatTurn = { id: number; role: "user" | "assistant"; text: string };
+
+const ASSISTANT_REPLY =
+  "Sure — I can refund order #48213 for $129.00 back to the original card. It usually lands within five business days.";
+
+/** A tiny chat: send a message, watch a streamed reply, stop or regenerate. */
+function ChatDemo() {
+  const [turns, setTurns] = React.useState<ChatTurn[]>([
+    { id: 0, role: "assistant", text: "Hi! How can I help with your order?" },
+  ]);
+  const [streamingId, setStreamingId] = React.useState<number | null>(null);
+  const nextId = React.useRef(1);
+  const timer = React.useRef<number | null>(null);
+
+  const stream = React.useCallback((id: number, full: string) => {
+    let i = 0;
+    setStreamingId(id);
+    const tick = () => {
+      i += 2;
+      setTurns((prev) =>
+        prev.map((t) => (t.id === id ? { ...t, text: full.slice(0, i) } : t)),
+      );
+      if (i < full.length) {
+        timer.current = window.setTimeout(tick, 40);
+      } else {
+        setStreamingId(null);
+      }
+    };
+    tick();
+  }, []);
+
+  const send = React.useCallback(
+    (value: string) => {
+      const userId = nextId.current++;
+      const botId = nextId.current++;
+      setTurns((prev) => [
+        ...prev,
+        { id: userId, role: "user", text: value },
+        { id: botId, role: "assistant", text: "" },
+      ]);
+      stream(botId, ASSISTANT_REPLY);
+    },
+    [stream],
+  );
+
+  const stop = React.useCallback(() => {
+    if (timer.current) window.clearTimeout(timer.current);
+    setStreamingId(null);
+  }, []);
+
+  const regenerate = React.useCallback(
+    (id: number) => {
+      setTurns((prev) => prev.map((t) => (t.id === id ? { ...t, text: "" } : t)));
+      stream(id, ASSISTANT_REPLY);
+    },
+    [stream],
+  );
+
+  return (
+    <div className="flex flex-col gap-4 rounded-lg border border-border bg-card p-4">
+      <div className="flex flex-col gap-4">
+        {turns.map((t) => (
+          <Message
+            key={t.id}
+            role={t.role}
+            streaming={streamingId === t.id}
+            onStop={streamingId === t.id ? stop : undefined}
+            onRegenerate={
+              t.role === "assistant" && streamingId === null && t.text
+                ? () => regenerate(t.id)
+                : undefined
+            }
+          >
+            {t.text}
+          </Message>
+        ))}
+      </div>
+      <Composer
+        streaming={streamingId !== null}
+        onStop={stop}
+        onSubmit={send}
+        onAttach={() => {}}
+        placeholder="Ask about your order…"
+      />
     </div>
   );
 }
@@ -227,6 +317,13 @@ export default function App() {
             { label: "Refund $500 instead", onClick: () => {} },
           ]}
         />
+      </section>
+
+      <section className="flex flex-col gap-2">
+        <h2 className="text-sm font-medium text-muted-foreground">
+          Streaming chat (Message + Composer)
+        </h2>
+        <ChatDemo />
       </section>
     </main>
   );
