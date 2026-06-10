@@ -60,6 +60,16 @@ export const PRESETS: Record<string, FeelingTarget> = {
     playfulness: -0.7,
     formality: 0.7,
   },
+  // The opposite corner from calm: warm, high-energy, fast, playful, casual.
+  lively: {
+    warmth: 0.4,
+    energy: 0.85,
+    density: 0.4,
+    weight: 0.4,
+    pace: 0.9,
+    playfulness: 0.7,
+    formality: -0.5,
+  },
 };
 
 /* -------------------------------------------------------------------------- */
